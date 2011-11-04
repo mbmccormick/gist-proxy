@@ -9,7 +9,8 @@
     
     // check if we have need to update our local copy of the gist
     if (file_exists("gists/" . $gist . ".js") == false ||
-        (time() - filemtime("gists/" . $gist . ".js")) > 1209600) // if local copy is greater than 14 days old
+        (time() - filemtime("gists/" . $gist . ".js")) > 1209600||
+        $_GET[force] == "true") // if file exists, or file is greater than 14 days old, or force update
     {
         // download javascript file from github
         $ch = curl_init("https://gist.github.com/" . $gist . ".js");
