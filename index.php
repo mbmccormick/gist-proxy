@@ -3,6 +3,9 @@
     // extract gist id from url
     $gist = $_GET[id];
     
+    // create cache directory
+    mkdir("gists", 0700);
+    
     // check if we have need to update our local copy of the gist
     if (file_exists("gists/" . $gist . ".js") == false ||
         (time() - filemtime("gists/" . $gist . ".js")) > 1209600) // if local copy is greater than 14 days old
