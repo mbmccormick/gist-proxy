@@ -16,6 +16,8 @@
             
             $line = str_replace("document.write('", "", $buff);
             $line = str_replace("')\n", "\n", $line);
+            $line = str_replace("\n", "", $line);
+            $line = str_replace("\\", "", $line);
             
             echo $line;
         }
