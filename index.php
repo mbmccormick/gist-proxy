@@ -9,7 +9,7 @@
     
     // check if we have need to update our local copy of the gist
     if (file_exists("gists/" . $gist . ".js") == false ||
-        (time() - filemtime("gists/" . $gist . ".js")) > 1209600||
+        (time() - filemtime("gists/" . $gist . ".js")) > 1209600 ||
         $_GET[force] == "true") // if file exists, or file is greater than 14 days old, or force update
     {
         // download javascript file from github
