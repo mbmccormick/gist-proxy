@@ -3,9 +3,23 @@
     // extract gist id from url
     $gist = $_GET[id];
     
-    // download javascript file from github
-    $fp = fopen("https://gist.github.com/" . $gist . ".js", "r");
-	
+    // check if we have need to update our local copy of the gist
+    if (file_exists($gist . ".js") == false ||
+        (date() - filemtime($gist . ".js")) > 1209600) // if local copy is greater than 14 days old
+    {
+        // download javascript file from github
+        $ch = curl_init("https://gist.github.com/" . $gist . ".js");
+        $fp = fopen($gist . ".js", "wb");
+        curl_setopt($ch, CURLOPT_FILE, $fp);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_exec($ch);
+        curl_close($ch);
+        fclose($fp);
+    }
+    
+    // open local copy of gist
+    $fp = fopen($gist . ".js", "r");
+    
     // parse javascript and render
     if ($fp)
     {
