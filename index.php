@@ -19,6 +19,10 @@
             $line = str_replace("\\n", "", $line);
             $line = str_replace("\\", "", $line);
             
+            $line = str_replace("        ", "", $line);
+            $line = str_replace("          ", "", $line);
+            $line = str_replace("            ", "", $line);
+            
             echo $line;
         }
     }
