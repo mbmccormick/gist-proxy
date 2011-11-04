@@ -14,7 +14,7 @@
             if ($buff == '\n')
                 continue;
             
-            $line = str_replace("document('", "", $buff);
+            $line = str_replace("document.write('", "", $buff);
             $line = str_replace("')\n", "\n", $line);
             
             echo $line;
