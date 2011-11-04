@@ -1,10 +1,10 @@
 <?php
 
     // extract gist id from url
-	$gist = $_GET[id];
+    $gist = $_GET[id];
     
     // download javascript file from github
-	$fp = fopen("https://gist.github.com/" . $gist . ".js", "r");
+    $fp = fopen("https://gist.github.com/" . $gist . ".js", "r");
 	
     // parse javascript and render
     if ($fp)
