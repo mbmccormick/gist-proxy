@@ -1,13 +1,27 @@
 <?php
 
-	$fname = $_GET[id];
-        
-	$ch = curl_init($_POST[RecordingUrl]);
-	$fp = fopen(ServerRootPath . "/download/conference/" . $fname . ".mp3", 'wb');
-	curl_setopt($ch, CURLOPT_FILE, $fp);
-	curl_setopt($ch, CURLOPT_HEADER, 0);
-	curl_exec($ch);
-	curl_close($ch);
-	fclose($fp);
+    // extract gist id from url
+	$gist = $_GET[id];
+    
+    // download javascript file from github
+	$fp = fopen("https://gist.github.com/" . $gist . ".js", "r");
+	
+    // parse javascript and render
+    if ($fp)
+    {
+        while (($buff = fgets($fp)) !== false)
+        {
+            if ($buff == '\n')
+                continue;
+            
+            $line = str_replace("document('", "", $buff);
+            $line = str_replace("')\n", "\n", $line);
+            
+            echo $line;
+        }
+    }
+    
+    // close connection to github
+    fclose($fp);
 
 ?>
