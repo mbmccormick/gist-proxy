@@ -4,7 +4,8 @@
     $gist = $_GET[id];
     
     // create cache directory
-    mkdir("gists", 0700);
+    if (file_exists("gists/") == false)
+        mkdir("gists", 0700);
     
     // check if we have need to update our local copy of the gist
     if (file_exists("gists/" . $gist . ".js") == false ||
