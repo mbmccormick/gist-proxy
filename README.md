@@ -27,6 +27,8 @@ By default, this script creates a local cache of each Gist file for 14 days. If 
 
 Local Gists are stored in the `gists/` directory in your installation directory of this script.
 
+You can view a demo of this application <a href="http://gist-proxy.herokuapp.com/index.php?id=3621333">here</a>.
+
 
 ## Disclaimer
 
